@@ -8,7 +8,7 @@ import { Box } from './Box';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchContacts } from 'redux/operations';
-import { selectError, selectIsLoading } from 'redux/selectors';
+import { selectError, selectIsLoading } from 'redux/selector';
 
 export const App = () => {
   const dispatch = useDispatch();
