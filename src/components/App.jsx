@@ -6,11 +6,14 @@ import { MainTitle, ContactsTitle } from './App.styled';
 import { Box } from './Box';
 
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchContacts } from 'redux/operations';
+import { selectError, selectIsLoading } from 'redux/selectors';
 
 export const App = () => {
   const dispatch = useDispatch();
+  const isLoading = useSelector(selectIsLoading);
+  const error = useSelector(selectError);
 
   useEffect(() => {
     dispatch(fetchContacts());
@@ -36,6 +39,8 @@ export const App = () => {
       <Box as="section">
         <ContactsTitle>Contacts</ContactsTitle>
         <Filter />
+        {isLoading && !error && <b>Your request is being processed...</b>}
+        {error && <p> {error} </p>}
         <ContactList />
       </Box>
     </Box>
